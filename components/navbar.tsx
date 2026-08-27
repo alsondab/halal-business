@@ -1,0 +1,5 @@
+"use client"
+import Link from "next/link"
+import { ShoppingBag } from "lucide-react"
+import { useCart } from "@/contexts/cart-context"
+export function Navbar(){const {state,dispatch}=useCart();return <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur"><div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 md:px-10"><Link href="/" className="flex items-center gap-3" aria-label="Halal Business, accueil"><img src="/halal-business-logo.png" alt="Halal Business" className="h-16 w-auto max-w-[170px] object-contain object-left md:h-20" /></Link><nav className="hidden gap-8 text-sm md:flex"><Link href="/products">Catalogue</Link><Link href="/#categories-section">Catégories</Link><Link href="/admin">Administration</Link></nav><button onClick={()=>dispatch({type:"TOGGLE"})} className="relative flex items-center gap-2 text-sm"><ShoppingBag className="h-5 w-5"/><span>Panier</span>{state.itemCount>0&&<span className="absolute -right-3 -top-3 flex h-5 min-w-5 items-center justify-center rounded-full bg-accent px-1 font-mono text-[10px]">{state.itemCount}</span>}</button></div></header>}
